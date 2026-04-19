@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://dyuhbokfu3ymm"]
+
+[ext_resource type="Script" uid="uid://cs2f8kqf73ort" path="res://movement.gd" id="1_y7oaa"]
+[ext_resource type="Texture2D" uid="uid://cphgjpvmcmob3" path="res://bug.png" id="2_ax0kw"]
+[ext_resource type="Script" uid="uid://bh1r64iv5qrcs" path="res://saw_movement.gd" id="3_vhw4q"]
+[ext_resource type="Texture2D" uid="uid://bv6ucjx3wrmkb" path="res://evil.png" id="4_fjf6m"]
+[ext_resource type="Script" uid="uid://ol8ndte14ot1" path="res://finish.gd" id="5_ax0kw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7dm0k"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
+size = Vector2(336, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(18, 161.625)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h2yge"]
+friction = 0.0
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1bvp3"]
+radius = 13.152946
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhw4q"]
+
+[node name="Node2D" type="Node2D" unique_id=1884211585]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=554593843]
+script = ExtResource("1_y7oaa")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=916676475]
+texture = ExtResource("2_ax0kw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=920881045]
+shape = SubResource("CapsuleShape2D_7dm0k")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=622188050]
+zoom = Vector2(3, 3)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1179202796]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=469899939]
+position = Vector2(115, 33)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=371089001]
+position = Vector2(115, -135)
+shape = SubResource("RectangleShape2D_ig7tw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1942167027]
+position = Vector2(-53, -56)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=346003059]
+position = Vector2(284, -51.1875)
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="StaticBody2D2" type="RigidBody2D" parent="." unique_id=1716198722]
+mass = 2.712
+physics_material_override = SubResource("PhysicsMaterial_h2yge")
+angular_velocity = 0.17453292
+script = ExtResource("3_vhw4q")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=334342241]
+position = Vector2(115, -69)
+texture = ExtResource("4_fjf6m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1894369066]
+position = Vector2(115, -69)
+shape = SubResource("CircleShape2D_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1202751751 node_paths=PackedStringArray("game_over_label")]
+script = ExtResource("5_ax0kw")
+game_over_label = NodePath("../CanvasLayer/RichTextLabel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=583661796]
+position = Vector2(248, 0)
+shape = SubResource("RectangleShape2D_vhw4q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=571214216]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=915873265]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = -70.0
+offset_right = 137.5
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[rainbow freq=1.0 sat=0.8 val=0.8][wave]YOU WIN[/wave][/rainbow]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
