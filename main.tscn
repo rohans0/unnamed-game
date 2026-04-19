@@ -36,6 +36,10 @@ shape = SubResource("CapsuleShape2D_7dm0k")
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=622188050]
 zoom = Vector2(3, 3)
 
+[node name="Invulnerability Cooldown" type="Timer" parent="CharacterBody2D" unique_id=395333843]
+
+[node name="Invulnerability Timer" type="Timer" parent="CharacterBody2D" unique_id=1450938408]
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1179202796]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=469899939]
