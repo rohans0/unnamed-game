@@ -9,6 +9,8 @@
 radius = 8.0
 height = 16.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lquwl"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig7tw"]
 size = Vector2(336, 16)
 
@@ -40,6 +42,11 @@ zoom = Vector2(3, 3)
 
 [node name="Invulnerability Timer" type="Timer" parent="CharacterBody2D" unique_id=1450938408]
 
+[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=490888476]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=2112112276]
+shape = SubResource("CircleShape2D_lquwl")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1179202796]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=469899939]
@@ -58,7 +65,7 @@ shape = SubResource("RectangleShape2D_0xm2m")
 position = Vector2(284, -51.1875)
 shape = SubResource("RectangleShape2D_0xm2m")
 
-[node name="StaticBody2D2" type="RigidBody2D" parent="." unique_id=1716198722]
+[node name="StaticBody2D2" type="RigidBody2D" parent="." unique_id=1716198722 groups=["Enemy"]]
 mass = 2.712
 physics_material_override = SubResource("PhysicsMaterial_h2yge")
 angular_velocity = 0.17453292
@@ -71,3 +78,7 @@ texture = ExtResource("3_h2yge")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1894369066]
 position = Vector2(115, -69)
 shape = SubResource("CircleShape2D_1bvp3")
+
+[connection signal="timeout" from="CharacterBody2D/Invulnerability Cooldown" to="CharacterBody2D" method="_on_invulnerability_cooldown_timeout"]
+[connection signal="timeout" from="CharacterBody2D/Invulnerability Timer" to="CharacterBody2D" method="_on_invulnerability_timer_timeout"]
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]

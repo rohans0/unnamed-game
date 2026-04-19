@@ -46,8 +46,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
-
-func _take_damage():
+	
+func take_damage():
+	print("took damage")
 	lives -= 1
 	#if lives <= 0:
 		#print("game over!") #add real game over here
@@ -61,3 +62,8 @@ func _on_invulnerability_cooldown_timeout():
 func _on_invulnerability_timer_timeout():
 	is_invul = false
 	print("invulnerability is over")
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("Enemy") and not is_invul:
+		take_damage()
