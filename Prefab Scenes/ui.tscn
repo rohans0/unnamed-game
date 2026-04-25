@@ -28,7 +28,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Lives" type="RichTextLabel" parent="CanvasLayer" unique_id=1867895663]
-offset_right = 63.0
+offset_right = 299.0
 offset_bottom = 23.0
 text = "Lives : 5"
 

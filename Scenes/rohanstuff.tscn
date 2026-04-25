@@ -53,8 +53,9 @@ position = Vector2(94, -80)
 [node name="Goal" parent="." unique_id=2002405367 node_paths=PackedStringArray("UI") instance=ExtResource("2_aoqqu")]
 UI = NodePath("../CharacterBody2D/UI")
 
-[node name="CharacterBody2D" parent="." unique_id=334005469 instance=ExtResource("4_adic2")]
+[node name="CharacterBody2D" parent="." unique_id=334005469 node_paths=PackedStringArray("UI") instance=ExtResource("4_adic2")]
 position = Vector2(-19, -3)
+UI = NodePath("UI")
 
 [node name="UI" parent="CharacterBody2D" unique_id=672430857 instance=ExtResource("4_d52th")]
 position = Vector2(19, 3)

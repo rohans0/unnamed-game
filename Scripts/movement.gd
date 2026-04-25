@@ -9,12 +9,18 @@ const INVUL_LENGTH = 1.0 #seconds
 var invul_usable:bool = true
 var is_invul:bool = false
 var lives:int = 5
+var fake_lives:int = 5
+var is_area_overlapping_saw:bool = false
 
 @export var default_position: Vector2 = Vector2(0, 0)
+@export var UI: Node2D
+
+func _init():
+	
+	assert( UI == null, "character body no ui thing export var check there")
 
 
 func _ready():
-	
 	$"Invulnerability Cooldown".one_shot = true
 	$"Invulnerability Cooldown".wait_time = INVUL_COOLDOWN
 	$"Invulnerability Timer".one_shot = true
@@ -29,6 +35,12 @@ func _process(delta: float) -> void:
 		$"Invulnerability Timer".start()
 		$"Invulnerability Cooldown".start()
 		print("invulnerability has begun")
+		
+	
+	if is_area_overlapping_saw:
+		UI.get_node("CanvasLayer/Lives").text = str(fake_lives)
+		fake_lives -= 1
+		if fake_lives < -100: fake_lives = lives
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -54,7 +66,6 @@ func take_damage():
 	lives -= 1
 	#if lives <= 0:
 		#print("game over!") #add real game over here
-	self.global_position = default_position
 
 func _on_invulnerability_cooldown_timeout():
 	invul_usable = true
@@ -67,5 +78,14 @@ func _on_invulnerability_timer_timeout():
 
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("Enemy") and not is_invul:
-		take_damage()
+	if body.is_in_group("Enemy"):
+		if not is_invul:
+			take_damage()
+		is_area_overlapping_saw=true
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		is_area_overlapping_saw=false
+		fake_lives = lives
+		UI.get_node("CanvasLayer/Lives").text = "HEALTH:"+ str(lives)
