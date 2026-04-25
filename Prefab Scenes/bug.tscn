@@ -8,7 +8,7 @@ radius = 4.0
 height = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lquwl"]
-radius = 19.0
+radius = 12.0415945
 
 [node name="Player" type="CharacterBody2D" unique_id=334005469]
 script = ExtResource("1_ibwlt")

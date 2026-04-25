@@ -8,8 +8,8 @@ const INVUL_COOLDOWN = 10.0 #seconds
 const INVUL_LENGTH = 1.0 #seconds
 var invul_usable:bool = true
 var is_invul:bool = false
-var lives:int = 5
-var fake_lives:int = 5
+var lives:int = 10
+var fake_lives:int = 10
 var is_area_overlapping_saw:bool = false
 
 @export var default_position: Vector2 = Vector2(0, 0)
@@ -35,7 +35,10 @@ func _process(delta: float) -> void:
 		$"Invulnerability Timer".start()
 		$"Invulnerability Cooldown".start()
 		print("invulnerability has begun")
-		
+	
+	if lives < -5:
+		self.global_position = default_position
+		lives = 10
 	
 	if is_area_overlapping_saw:
 		print(fake_lives)
