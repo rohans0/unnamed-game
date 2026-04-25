@@ -13,7 +13,7 @@ size = Vector2(336, 6)
 size = Vector2(29.5, 177.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgkft"]
-size = Vector2(95, 119.8125)
+size = Vector2(97.5, 119.8125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_trmy6"]
 size = Vector2(1761.0001, 118.5)
@@ -217,7 +217,7 @@ scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_wgkft")
 
 [node name="CollisionShape2D18" type="CollisionShape2D" parent="PlatformCollisions" unique_id=872536912]
-position = Vector2(1579, 77)
+position = Vector2(1566.0001, 77)
 scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_trmy6")
 
@@ -314,12 +314,17 @@ scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_2e7mp")
 
 [node name="CollisionShape2D17" type="CollisionShape2D" parent="PlatformCollisions" unique_id=1087408817]
-position = Vector2(644, 364)
+position = Vector2(642, 387)
 scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_wgkft")
 
 [node name="CollisionShape2D12" type="CollisionShape2D" parent="PlatformCollisions" unique_id=1544498492]
-position = Vector2(644, 140)
+position = Vector2(641, 166)
+scale = Vector2(0.99999994, 1)
+shape = SubResource("RectangleShape2D_wgkft")
+
+[node name="CollisionShape2D33" type="CollisionShape2D" parent="PlatformCollisions" unique_id=233291932]
+position = Vector2(639, 274)
 scale = Vector2(0.99999994, 1)
 shape = SubResource("RectangleShape2D_wgkft")
 

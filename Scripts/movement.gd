@@ -35,16 +35,6 @@ func _process(delta: float) -> void:
 		$"Invulnerability Timer".start()
 		$"Invulnerability Cooldown".start()
 		print("invulnerability has begun")
-	
-	if lives < -5:
-		self.global_position = default_position
-		lives = 10
-	
-	if is_area_overlapping_saw:
-		print(fake_lives)
-		fake_lives -= 3
-		UI.get_node("CanvasLayer/Lives").text =  "HEALTH:"+ str(fake_lives)
-		if fake_lives < -10000: fake_lives = lives
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -68,8 +58,16 @@ func _physics_process(delta: float) -> void:
 func take_damage():
 	print("took damage")
 	lives -= 1
-	#if lives <= 0:
-		#print("game over!") #add real game over here
+	
+	if lives < -5:
+		self.global_position = default_position
+		lives = 10
+	
+	if is_area_overlapping_saw:
+		print(fake_lives)
+		fake_lives -= 3
+		UI.get_node("CanvasLayer/Lives").text =  "HEALTH:"+ str(fake_lives)
+		if fake_lives < -10000: fake_lives = lives
 
 func _on_invulnerability_cooldown_timeout():
 	invul_usable = true
